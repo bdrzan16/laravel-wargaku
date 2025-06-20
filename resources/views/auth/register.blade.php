@@ -84,10 +84,10 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Script Toggle Password -->
-        <script>
+        {{-- <script>
             document.querySelectorAll('.toggle-password').forEach(function(el) {
                 el.addEventListener('click', function() {
                     const input = document.querySelector(this.getAttribute('toggle'));
@@ -97,10 +97,10 @@
                     this.classList.toggle('fa-eye-slash');
                 });
             });
-        </script>
+        </script> --}}
 
         <!-- Script Tampilkan/Sembunyikan Form RT -->
-        <script>
+        {{-- <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const roleSelect = document.querySelector('select[name="role"]');
                 const rtField = document.getElementById("form-rt");
