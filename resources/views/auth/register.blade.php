@@ -7,14 +7,16 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Register</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link href="{{ asset('assets2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('assets2/css/auth.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets2/css/auth.css') }}"> --}}
     </head>
 
-    <body class="register-page">
-        <div class="container py-4 mt-5">
+    {{-- <body class="register-page"> --}}
+    <body>
+        <h1>Register Page</h1>
+        {{-- <div class="container py-4 mt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-7 col-sm-10">
 
@@ -115,7 +117,7 @@
                 toggleRTField();
                 roleSelect.addEventListener("change", toggleRTField);
             });
-        </script>
+        </script> --}}
     </body>
 
 </html>

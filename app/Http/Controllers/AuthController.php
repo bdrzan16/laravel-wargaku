@@ -19,88 +19,88 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'role' => 'required|in:rw,rt',
-            'rw' => ['required', 'regex:/^\d{2}$/'],
-            'rt' => ['required_if:role,rt', 'nullable', 'regex:/^\d{2}$/'],
-            'daerah' => 'required|string|max:255',
-        ]);
+    // public function register(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:8',
+    //         'role' => 'required|in:rw,rt',
+    //         'rw' => ['required', 'regex:/^\d{2}$/'],
+    //         'rt' => ['required_if:role,rt', 'nullable', 'regex:/^\d{2}$/'],
+    //         'daerah' => 'required|string|max:255',
+    //     ]);
 
-        try {
-            // Simpan/ambil daerah
-            $daerah = Daerah::firstOrCreate([
-                'name' => ucwords(strtolower($request->daerah))
-            ]);
-            $daerah_id = $daerah->id;
+    //     try {
+    //         // Simpan/ambil daerah
+    //         $daerah = Daerah::firstOrCreate([
+    //             'name' => ucwords(strtolower($request->daerah))
+    //         ]);
+    //         $daerah_id = $daerah->id;
 
-            $rwModel = null;
-            $rtModel = null;
+    //         $rwModel = null;
+    //         $rtModel = null;
 
-            if ($request->role === 'rw') {
-                $rwModel = RW::create([
-                    'name' => $request->rw,
-                    'daerah_id' => $daerah_id,
-                ]);
-            }
+    //         if ($request->role === 'rw') {
+    //             $rwModel = RW::create([
+    //                 'name' => $request->rw,
+    //                 'daerah_id' => $daerah_id,
+    //             ]);
+    //         }
 
-            if ($request->role === 'rt') {
-                $rwModel = RW::where('name', $request->rw)
-                    ->where('daerah_id', $daerah_id)
-                    ->first();
+    //         if ($request->role === 'rt') {
+    //             $rwModel = RW::where('name', $request->rw)
+    //                 ->where('daerah_id', $daerah_id)
+    //                 ->first();
 
-                if (!$rwModel) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'RW tidak ditemukan di daerah tersebut.'
-                    ], 400);
-                }
+    //             if (!$rwModel) {
+    //                 return response()->json([
+    //                     'success' => false,
+    //                     'message' => 'RW tidak ditemukan di daerah tersebut.'
+    //                 ], 400);
+    //             }
 
-                $rtModel = RT::create([
-                    'name' => $request->rt,
-                    'rw_id' => $rwModel->id,
-                    'daerah_id' => $daerah_id,
-                ]);
-            }
+    //             $rtModel = RT::create([
+    //                 'name' => $request->rt,
+    //                 'rw_id' => $rwModel->id,
+    //                 'daerah_id' => $daerah_id,
+    //             ]);
+    //         }
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'rw_id' => $rwModel?->id,
-                'rt_id' => $rtModel?->id,
-                'daerah_id' => $daerah_id,
-            ]);
+    //         $user = User::create([
+    //             'name' => $request->name,
+    //             'email' => $request->email,
+    //             'password' => Hash::make($request->password),
+    //             'rw_id' => $rwModel?->id,
+    //             'rt_id' => $rtModel?->id,
+    //             'daerah_id' => $daerah_id,
+    //         ]);
 
-            $user->assignRole($request->role);
+    //         $user->assignRole($request->role);
 
-            if ($request->role === 'rw') {
-                $rwModel->update(['user_id' => $user->id]);
-            }
+    //         if ($request->role === 'rw') {
+    //             $rwModel->update(['user_id' => $user->id]);
+    //         }
 
-            if ($request->role === 'rt') {
-                $rtModel->update(['user_id' => $user->id]);
-            }
+    //         if ($request->role === 'rt') {
+    //             $rtModel->update(['user_id' => $user->id]);
+    //         }
 
-            activity()->causedBy($user)->log('registrasi user baru');
+    //         activity()->causedBy($user)->log('registrasi user baru');
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Registrasi berhasil',
-                'user' => $user
-            ]);
-        } catch (\Throwable $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Terjadi kesalahan saat registrasi',
-                'error' => $e->getMessage()
-            ], 500);
-        }
-    }
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Registrasi berhasil',
+    //             'user' => $user
+    //         ]);
+    //     } catch (\Throwable $e) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Terjadi kesalahan saat registrasi',
+    //             'error' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 
     // public function register(Request $request)
     // {
