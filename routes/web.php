@@ -16,6 +16,10 @@ use App\Http\Controllers\SettingsController;
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 
+Route::get('/cek', function () {
+    return response()->json(['status' => 'ok']);
+});
+
 Route::get('/', function () {
     if (Auth::check()) {
         $user = Auth::user();
