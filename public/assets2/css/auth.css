@@ -1,0 +1,187 @@
+/* Tampilan utama (Desktop / Tablet) */
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+/* start color */
+.btn.btn-wargaku {
+    background: #29B6A5;
+    color: #fff; }
+.btn.btn-wargaku:hover {
+    border: 2px solid #29B6A5;
+    background: transparent;
+    color: #29B6A5; }
+.text-wargaku {
+    color: #29B6A5;
+}
+.text-wargaku:hover{
+    color: #000;
+}
+.bg-sidebar{
+    background-color: #29B6A5;
+}
+/* end color */
+
+
+/* ===================================================== */
+/* UKURAN KHUSUS DEVICE KECIL */
+/* ===================================================== */
+
+/* ===================== */
+/* === START REGISTER === */
+/* ===================== */
+
+@media (max-width: 360px) {
+    body.register-page img[alt="Logo"] {
+        max-width: 100px !important;
+        margin-top: 5rem;
+    }
+
+    body.register-page .container {
+        padding: 1rem !important;
+    }
+
+    body.register-page .container .row > div {
+        width: 100% !important;
+    }
+
+    body.register-page input.form-control,
+    body.register-page select.form-select {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    body.register-page button.btn {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 767.98px) {
+    body.register-page img[alt="Logo"] {
+        max-width: 100px !important;
+        margin-top: 8rem;
+    }
+
+    body.register-page .container {
+        padding: 1.5rem !important;
+    }
+
+    body.register-page .container .row > div {
+        width: 90% !important;
+        margin: 0 auto;
+    }
+
+    body.register-page input.form-control,
+    body.register-page select.form-select {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    body.register-page button.btn {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    body.register-page img[alt="Logo"] {
+        max-width: 130px !important;
+        margin-top: 8rem;
+    }
+
+    body.register-page .container {
+        padding: 1.5rem !important;
+    }
+
+    body.register-page .container .row > div {
+        width: 90% !important;
+        margin: 0 auto;
+    }
+
+    body.register-page input.form-control,
+    body.register-page select.form-select {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    body.register-page button.btn {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+}
+
+/* =================== */
+/* === END REGISTER === */
+/* =================== */
+
+
+/* ================= */
+/* === START LOGIN === */
+/* ================= */
+
+@media (max-width: 360px) {
+    body.login-page {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        overflow: hidden;
+    }
+
+    body.login-page .container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Tengah vertikal */
+        align-items: center;
+        padding: 0 1rem 1rem 1rem; /* atas dikurangi */
+        overflow: hidden;
+    }
+
+    body.login-page .row {
+        width: 100%;
+        margin: 0;
+    }
+
+    body.login-page .col-md-6 {
+        width: 100% !important;
+    }
+
+    body.login-page img[alt="Logo"] {
+        max-width: 130px !important;
+        margin-bottom: 1rem;
+    }
+
+    body.login-page input.form-control,
+    body.login-page select.form-select {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    body.login-page button.btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    body.login-page .text-wargaku {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 767.98px) {
+    body.login-page img[alt="Logo"] {
+        max-width: 130px !important;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ================= */
+/* === END LOGIN === */
+/* ================= */
+
+/* ===================================================== */
