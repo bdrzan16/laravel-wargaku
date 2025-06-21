@@ -57,12 +57,12 @@ class User extends Authenticatable
     // Jika pakai tabel rws/rts
     public function rwDetail()
     {
-        return $this->hasOne(RW::class);
+        return $this->belongsTo(RW::class, 'rw_id');
     }
 
     public function rtDetail()
     {
-        return $this->hasOne(RT::class);
+        return $this->belongsTo(RT::class, 'rt_id');
     }
 
     public function daerah()
