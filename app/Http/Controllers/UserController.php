@@ -9,14 +9,17 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua user beserta relasi rwDetail, rtDetail, dan daerah
-        $users = User::with(['rwDetail', 'rtDetail', 'daerah'])->get();
+        // Ambil semua user KECUALI yang role-nya 'admin'
+        $users = User::with(['rwDetail', 'rtDetail', 'daerah'])
+            ->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'admin');
+            })
+            ->get();
 
-        // Ubah data menjadi format yang mudah dibaca di frontend
+        // Format data untuk frontend
         $formatted = $users->map(function ($user) {
             $role = $user->getRoleNames()->first() ?? '-';
 
-            // Default values
             $rw = optional($user->rwDetail)->name ?? '-';
             $rt = optional($user->rtDetail)->name ?? '-';
 
