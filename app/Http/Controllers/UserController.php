@@ -14,13 +14,24 @@ class UserController extends Controller
 
         // Ubah data menjadi format yang mudah dibaca di frontend
         $formatted = $users->map(function ($user) {
+            $role = $user->getRoleNames()->first() ?? '-';
+
+            // Default values
+            $rw = optional($user->rwDetail)->name ?? '-';
+            $rt = optional($user->rtDetail)->name ?? '-';
+
+            // Jika role RT, ambil RW dari rtDetail->rwDetail
+            if ($role === 'rt') {
+                $rw = optional($user->rtDetail?->rwDetail)->name ?? $rw;
+            }
+
             return [
                 'id' => $user->id,
                 'name' => $user->name,
-                'role' => $user->getRoleNames()->first() ?? '-', // dari spatie
+                'role' => $role,
                 'email' => $user->email ?? '-',
-                'rw' => optional($user->rwDetail)->name ?? '-',
-                'rt' => optional($user->rtDetail)->name ?? '-',
+                'rw' => $rw,
+                'rt' => $rt,
                 'daerah' => optional($user->daerah)->name ?? '-',
                 'created_at' => $user->created_at?->format('d-m-Y H:i') ?? '-',
             ];
