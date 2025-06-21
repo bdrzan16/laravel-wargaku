@@ -19,9 +19,9 @@ class UserController extends Controller
                 'name' => $user->name,
                 'role' => $user->getRoleNames()->first() ?? '-', // dari spatie
                 'email' => $user->email ?? '-',
-                'rw' => optional($user->rwDetail)->nama_rw ?? '-',
-                'rt' => optional($user->rtDetail)->nama_rt ?? '-',
-                'daerah' => optional($user->daerah)->nama_daerah ?? '-',
+                'rw' => optional($user->rwDetail)->name ?? '-',
+                'rt' => optional($user->rtDetail)->name ?? '-',
+                'daerah' => optional($user->daerah)->name ?? '-',
                 'created_at' => $user->created_at?->format('d-m-Y H:i') ?? '-',
             ];
         });
