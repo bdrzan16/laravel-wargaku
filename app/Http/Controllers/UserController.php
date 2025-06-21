@@ -9,15 +9,15 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua user KECUALI yang role-nya 'admin'
+        // Ambil user BUKAN admin, dan paginate 10 per halaman
         $users = User::with(['rwDetail', 'rtDetail', 'daerah'])
             ->whereDoesntHave('roles', function ($query) {
                 $query->where('name', 'admin');
             })
-            ->get();
+            ->paginate(10); // <= ini paginasi aktif
 
         // Format data untuk frontend
-        $formatted = $users->map(function ($user) {
+        $formatted = $users->getCollection()->map(function ($user) {
             $role = $user->getRoleNames()->first() ?? '-';
 
             $rw = optional($user->rwDetail)->name ?? '-';
@@ -40,6 +40,10 @@ class UserController extends Controller
             ];
         });
 
-        return response()->json($formatted);
+        // Gantikan collection dengan hasil yang sudah diformat
+        $users->setCollection($formatted);
+
+        // Return response lengkap (termasuk pagination info)
+        return response()->json($users);
     }
 }
