@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\SettingsController;
 
@@ -32,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get-rt-by-daerah-rw', [PendudukController::class, 'getRTByDaerahRW']);
     Route::get('/get-daerah-users', [PendudukController::class, 'getDaerahFromUsers']);
 });
+
+Route::middleware('auth:sanctum')->get('/users', [UserController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/settings', [SettingsController::class, 'index']);
