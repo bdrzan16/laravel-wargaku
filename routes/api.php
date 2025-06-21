@@ -40,3 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->get('/activity', [ActivityController::class, 'index']);
+
+Route::get('/cek', function () {
+    return response()->json(['status' => 'ok']);
+});
